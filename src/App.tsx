@@ -1,7 +1,6 @@
 import './App.css';
 import styled from 'styled-components';
 import Circle from './Components/Circle';
-import { formatTime } from './utils/formatTime';
 import { useTimer } from './hooks/useTimer';
 
 const AppContainer = styled.section`
