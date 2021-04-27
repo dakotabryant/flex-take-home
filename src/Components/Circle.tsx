@@ -26,7 +26,6 @@ const Circle = styled.button<ICircleProps>`
   cursor: pointer;
   border: 0;
   background-color: transparent;
-  color: white;
   font-size: 22px;
 `;
 const CircleBorderContainer = styled.svg`
@@ -38,21 +37,24 @@ const CircleBorderContainer = styled.svg`
   transform: rotate(-90deg);
 `;
 
-const CircleStroke = styled.circle.attrs<ICircleStrokeProps>(
-  ({ shouldAnimate }) => ({
-    style: {
-      transition: `${shouldAnimate ? 'all 0.3s ease' : ''}`,
-    },
-  })
-)<ICircleStrokeProps>``;
+const CircleStroke = styled.circle.attrs<ICircleStrokeProps>(({ shouldAnimate }) => ({
+  style: {
+    transition: `${shouldAnimate ? 'all 0.3s ease' : ''}`,
+  },
+}))<ICircleStrokeProps>``;
 
-const CircleContainer: React.FC<ICircleContainerProps> = ({ togglePause, time, shouldAnimate, timeLimit }) => {
+const CircleContainer: React.FC<ICircleContainerProps> = ({
+  togglePause,
+  time,
+  shouldAnimate,
+  timeLimit,
+}) => {
   const diameter = 150;
   const strokeWidth = 12;
   const radius = diameter / 2 - strokeWidth / 2;
   const circumference = Math.PI * radius * 2;
   // because we need the inverse percentage for strokeDashoffset, we subtract the precentage decimal from 1
-  const timeAsPercentage = 1 - (time / 1000) / timeLimit;
+  const timeAsPercentage = 1 - time / 1000 / timeLimit;
   return (
     <Circle onClick={togglePause}>
       <h1>{formatTime(time)}</h1>

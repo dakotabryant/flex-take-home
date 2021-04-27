@@ -9,7 +9,6 @@ const AppContainer = styled.section`
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: linear-gradient(to bottom, #6446a4 0%, #b096e7 100%);
 `;
 
 function App() {
