@@ -53,7 +53,7 @@ const CircleContainer: React.FC<ICircleContainerProps> = ({ togglePause, time, s
   const radius = diameter / 2 - strokeWidth / 2;
   const circumference = Math.PI * radius * 2;
   // because we need the inverse percentage for strokeDashoffset, we subtract the precentage decimal from 1
-  const timeAsPercentage = 1 - time / 5;
+  const timeAsPercentage = 1 - (time / 1000) / 5;
   return (
     <Circle onClick={togglePause}>
       <h1>{formatTime(time)}</h1>

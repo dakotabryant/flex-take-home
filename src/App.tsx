@@ -25,7 +25,7 @@ function App() {
   };
   return (
     <AppContainer>
-      <Circle time={time / 1000} togglePause={handleClick} shouldAnimate={shouldAnimate} />
+      <Circle time={time} togglePause={handleClick} shouldAnimate={shouldAnimate} />
     </AppContainer>
   );
 }
