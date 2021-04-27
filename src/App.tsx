@@ -1,25 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import styled from 'styled-components';
+import Circle from './Components/Circle';
+import { formatTime } from './utils/formatTime';
+import { useTimer } from './hooks/useTimer';
+
+const AppContainer = styled.section`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(to bottom, #6446a4 0%, #b096e7 100%);
+`;
 
 function App() {
+  const { time, timerOn, setTimerOn, setTime, shouldAnimate, setShouldAnimate } = useTimer();
+  const handleClick = () => {
+    if (!timerOn && time >= 5000) {
+      setTime(0);
+    } else if (timerOn) {
+      setTimerOn(false);
+    } else if (!timerOn && time !== 5000) {
+      setShouldAnimate(false);
+      setTimerOn(true);
+    }
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppContainer>
+      <Circle time={time / 1000} togglePause={handleClick} shouldAnimate={shouldAnimate} />
+    </AppContainer>
   );
 }
 
