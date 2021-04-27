@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { TIME_LIMIT_IN_MILLISECONDS } from '../utils/constants';
 export const useTimer = () => {
   const [time, setTime] = useState(0);
   const [timerOn, setTimerOn] = useState(false);
@@ -14,7 +15,7 @@ export const useTimer = () => {
     }
     return () => window.clearInterval(interval);
   }, [timerOn]);
-  if (time === 5000 && timerOn) {
+  if (time === TIME_LIMIT_IN_MILLISECONDS && timerOn) {
     setShouldAnimate(true);
     setTimerOn(false);
   }

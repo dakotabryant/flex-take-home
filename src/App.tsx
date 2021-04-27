@@ -2,6 +2,7 @@ import './App.css';
 import styled from 'styled-components';
 import Circle from './Components/Circle';
 import { useTimer } from './hooks/useTimer';
+import { TIME_LIMIT_IN_MILLISECONDS } from './utils/constants';
 
 const AppContainer = styled.section`
   display: flex;
@@ -14,18 +15,23 @@ const AppContainer = styled.section`
 function App() {
   const { time, timerOn, setTimerOn, setTime, shouldAnimate, setShouldAnimate } = useTimer();
   const handleClick = () => {
-    if (!timerOn && time >= 5000) {
+    if (!timerOn && time >= TIME_LIMIT_IN_MILLISECONDS) {
       setTime(0);
     } else if (timerOn) {
       setTimerOn(false);
-    } else if (!timerOn && time !== 5000) {
+    } else if (!timerOn && time !== TIME_LIMIT_IN_MILLISECONDS) {
       setShouldAnimate(false);
       setTimerOn(true);
     }
   };
   return (
     <AppContainer>
-      <Circle time={time} togglePause={handleClick} shouldAnimate={shouldAnimate} />
+      <Circle
+        time={time}
+        togglePause={handleClick}
+        shouldAnimate={shouldAnimate}
+        timeLimit={TIME_LIMIT_IN_MILLISECONDS / 1000}
+      />
     </AppContainer>
   );
 }
