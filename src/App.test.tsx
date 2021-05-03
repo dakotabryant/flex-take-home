@@ -1,9 +1,11 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import App from './App';
+import CircleContainer from './Components/Circle';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+test('loads and displays Timer', () => {
+  render(
+    <CircleContainer time={3000} togglePause={() => {}} shouldAnimate={false} timeLimit={5000} />
+  );
+  const container = screen.getByTestId('circle-container');
+  expect(container).toBeVisible();
 });
